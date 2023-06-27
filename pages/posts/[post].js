@@ -1,52 +1,52 @@
-import Head from "next/head";
-import { useRouter } from "next/router";
+// import Head from "next/head";
+// import { useRouter } from "next/router";
 
-export default function Post(props) {
-  // const router = useRouter();
-  // const { id } = router.query;
+// export default function Post(props) {
+//   // const router = useRouter();
+//   // const { id } = router.query;
 
-  const { post } = props;
+//   const { post } = props;
 
-  // console.log(post);
+//   // console.log(post);
 
-  return (
-    <>
-      <Head>
-        <title>Post {post.id}</title>
-        <meta name="description" content="bla bla" />
-      </Head>
-      <h1>Post {post.id}</h1>
-      <p>{post.title}</p>
-      <p>{post.body}</p>
-    </>
-  );
-}
+//   return (
+//     <>
+//       <Head>
+//         <title>Post {post.id}</title>
+//         <meta name="description" content="bla bla" />
+//       </Head>
+//       <h1>Post {post.id}</h1>
+//       <p>{post.title}</p>
+//       <p>{post.body}</p>
+//     </>
+//   );
+// }
 
-export async function getStaticProps(context) {
-  const res = await fetch(
-    `http://localhost:3001/api/posts/${context.params.post}`
-  );
-  const post = await res.json();
+// export async function getStaticProps(context) {
+//   const res = await fetch(
+//     `http://localhost:3001/api/posts/${context.params.post}`
+//   );
+//   const post = await res.json();
 
-  return {
-    props: {
-      post,
-    },
-  };
-}
+//   return {
+//     props: {
+//       post,
+//     },
+//   };
+// }
 
-export async function getStaticPaths() {
-  const res = await fetch("http://localhost:3001/api/posts");
-  const data = await res.json();
+// export async function getStaticPaths() {
+//   const res = await fetch("http://localhost:3001/api/posts");
+//   const data = await res.json();
 
-  const paths = data.map((d) => {
-    return {
-      params: { post: `${d.id}` },
-    };
-  });
+//   const paths = data.map((d) => {
+//     return {
+//       params: { post: `${d.id}` },
+//     };
+//   });
 
-  return {
-    paths: paths,
-    fallback: false,
-  };
-}
+//   return {
+//     paths: paths,
+//     fallback: false,
+//   };
+// }

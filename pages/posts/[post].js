@@ -1,52 +1,46 @@
-// import Head from "next/head";
-// import { useRouter } from "next/router";
+import Head from "next/head";
 
-// export default function Post(props) {
-//   // const router = useRouter();
-//   // const { id } = router.query;
+export default function Post(props) {
+  const { post } = props;
 
-//   const { post } = props;
+  return (
+    <>
+      <Head>
+        <title>Post {post.id}</title>
+        <meta name="description" content="bla bla" />
+      </Head>
+      <h1>Post {post.id}</h1>
+      <p>{post.title}</p>
+      <p>{post.body}</p>
+    </>
+  );
+}
 
-//   // console.log(post);
+export const getStaticProps = async (context) => {
+  const res = await fetch(
+    `http://localhost:3001/api/posts/${context.params.post}`
+  );
+  const post = await res.json();
 
-//   return (
-//     <>
-//       <Head>
-//         <title>Post {post.id}</title>
-//         <meta name="description" content="bla bla" />
-//       </Head>
-//       <h1>Post {post.id}</h1>
-//       <p>{post.title}</p>
-//       <p>{post.body}</p>
-//     </>
-//   );
-// }
+  return {
+    props: {
+      post,
+    },
+  };
+};
 
-// export async function getStaticProps(context) {
-//   const res = await fetch(
-//     `http://localhost:3001/api/posts/${context.params.post}`
-//   );
-//   const post = await res.json();
+export const getStaticPaths = async () => {
+  const res = await fetch("http://localhost:3001/api/posts");
+  const data = await res.json();
 
-//   return {
-//     props: {
-//       post,
-//     },
-//   };
-// }
+  const paths = data.map((d) => {
+    return {
+      params: { post: `${d.id}` },
+    };
+  });
 
-// export async function getStaticPaths() {
-//   const res = await fetch("http://localhost:3001/api/posts");
-//   const data = await res.json();
-
-//   const paths = data.map((d) => {
-//     return {
-//       params: { post: `${d.id}` },
-//     };
-//   });
-
-//   return {
-//     paths: paths,
-//     fallback: false,
-//   };
-// }
+  return {
+    paths: paths,
+    fallback: false,
+  };
+};

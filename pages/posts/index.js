@@ -23,7 +23,7 @@ export default function Products(props) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps = async () => {
   const res = await fetch("http://localhost:3001/api/posts");
   const posts = await res.json();
   return {
@@ -31,4 +31,4 @@ export async function getStaticProps() {
       posts,
     },
   };
-}
+};

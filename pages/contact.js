@@ -1,13 +1,13 @@
 import Head from "next/head";
 
-export default function Home() {
+export default function Contact() {
   return (
     <>
       <Head>
-        <title>Next JS</title>
+        <title>Contact</title>
         <meta name="description" content="bla bla" />
       </Head>
-      <h1>Home Component</h1>
+      <h1>Contact Component</h1>
     </>
   );
 }

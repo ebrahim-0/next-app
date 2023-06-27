@@ -13,7 +13,9 @@ export default function Products(props) {
       {posts.map((post) => {
         return (
           <div key={post.id} style={{ padding: "8px" }}>
-            <Link href={`/posts/${post.id}`}>{post.body}</Link>
+            {/* <Link href={`/posts/${post.id}`}>{post.body}</Link> */}
+
+            <p>{post.body}</p>
           </div>
         );
       })}

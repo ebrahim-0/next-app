@@ -18,7 +18,7 @@ export default function Post(props) {
 
 export const getStaticProps = async (context) => {
   const res = await fetch(
-    `http://localhost:3001/api/posts/${context.params.post}`
+    `https://jsonplaceholder.typicode.com/posts/${context.params.post}`
   );
   const post = await res.json();
 
@@ -30,7 +30,7 @@ export const getStaticProps = async (context) => {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:3001/api/posts");
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const data = await res.json();
 
   const paths = data.map((d) => {

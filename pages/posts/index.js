@@ -13,9 +13,7 @@ export default function Products(props) {
       {posts.map((post) => {
         return (
           <div key={post.id} style={{ padding: "8px" }}>
-            {/* <Link href={`/posts/${post.id}`}>{post.body}</Link> */}
-
-            <p>{post.body}</p>
+            <Link href={`/posts/${post.id}`}>{post.body}</Link>
           </div>
         );
       })}
@@ -24,7 +22,7 @@ export default function Products(props) {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:3001/api/posts");
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const posts = await res.json();
   return {
     props: {

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 
-function Products(props) {
+export default function Products(props) {
   const { posts } = props;
   console.log(props);
   return (
@@ -21,10 +21,8 @@ function Products(props) {
   );
 }
 
-export default Products;
-
 export async function getStaticProps() {
-  const res = await fetch("http://localhost:3000/api/posts");
+  const res = await fetch("http://localhost:3001/api/posts");
   const posts = await res.json();
   return {
     props: {

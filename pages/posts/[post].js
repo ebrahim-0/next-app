@@ -22,38 +22,9 @@ export default function Post(props) {
   );
 }
 
-// export async function getStaticProps(context) {
-//   const res = await fetch(
-//     `http://localhost:3000/api/posts/${context.params.post}`
-//   );
-//   const post = await res.json();
-
-//   return {
-//     props: {
-//       post,
-//     },
-//   };
-// }
-
-// export async function getStaticPaths() {
-//   const res = await fetch("http://localhost:3000/api/posts");
-//   const data = await res.json();
-
-//   const paths = data.map((d) => {
-//     return {
-//       params: { post: `${d.id}` },
-//     };
-//   });
-
-//   return {
-//     paths: paths,
-//     fallback: false,
-//   };
-// }
-
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const res = await fetch(
-    `http://localhost:3000/api/posts/${context.params.post}`
+    `http://localhost:3001/api/posts/${context.params.post}`
   );
   const post = await res.json();
 
@@ -61,5 +32,21 @@ export async function getServerSideProps(context) {
     props: {
       post,
     },
+  };
+}
+
+export async function getStaticPaths() {
+  const res = await fetch("http://localhost:3001/api/posts");
+  const data = await res.json();
+
+  const paths = data.map((d) => {
+    return {
+      params: { post: `${d.id}` },
+    };
+  });
+
+  return {
+    paths: paths,
+    fallback: false,
   };
 }
